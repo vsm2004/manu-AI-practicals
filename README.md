@@ -1,0 +1,1 @@
+# manu-AI-practicals
