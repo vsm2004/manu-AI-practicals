@@ -1,0 +1,19 @@
+% Facts about symptoms and conditions
+symptom(cough, cold).
+symptom(sneezing, cold).
+symptom(fever, flu).
+symptom(body_aches, flu).
+symptom(itchy_eyes, allergies).
+symptom(runny_nose, allergies).
+
+% Rule for diagnosing a condition based on symptoms
+diagnose_patient(Symptoms, Condition) :-
+    member(Symptom, Symptoms),
+    symptom(Symptom, Condition).
+
+% Predicate for an interactive interface to input symptoms and get a diagnosis
+interactive_diagnosis :-
+    write('Enter your symptoms (separated by commas): '),
+    read(Symptoms),
+    diagnose_patient(Symptoms, Condition),
+    write('Based on your symptoms, you may have '), write(Condition), write('.'), nl.

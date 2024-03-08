@@ -1,0 +1,25 @@
+% Facts about parent relationships
+father(john, lisa).
+father(mike, emma).
+father(tom, mary).
+
+mother(mary, lisa).
+mother(mary, mike).
+mother(emma, olivia).
+
+% Rules to define sibling relationship
+sibling(X, Y) :-
+    father(F, X),
+    father(F, Y),
+    mother(M, X),
+    mother(M, Y),
+    X \= Y.
+
+% Rules to define grandparent relationship
+grandparent(X, Z) :-
+    father(X, Y),
+    (father(Y, Z); mother(Y, Z)).
+
+grandparent(X, Z) :-
+    mother(X, Y),
+    (father(Y, Z); mother(Y, Z)).
