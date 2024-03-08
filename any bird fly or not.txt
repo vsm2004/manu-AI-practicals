@@ -1,0 +1,13 @@
+% Facts about birds and their ability to fly
+can_fly(sparrow).
+can_fly(eagle).
+can_fly(crow).
+
+% Query to determine if a bird can fly
+can_fly_or_not(Bird) :-
+    can_fly(Bird),
+    write(Bird), write(' can fly.').
+
+can_fly_or_not(Bird) :-
+    \+ can_fly(Bird),
+    write(Bird), write(' cannot fly.').
