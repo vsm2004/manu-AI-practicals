@@ -1,0 +1,9 @@
+prolog
+on_box.
+at(monkey, floor).
+at(box, floor).
+at(bananas, ceiling).
+move(monkey, grab, bananas) :- at(monkey, floor), at(bananas, floor), on_box.
+move(monkey, climb, box) :- at(monkey, floor), at(box, floor), \+on_box.
+move(monkey, push, box) :- at(monkey, floor), \+at(bananas, floor), \+on_box.
+move(monkey, stand, box) :- at(monkey, floor), at(box, floor), \+on_box.
