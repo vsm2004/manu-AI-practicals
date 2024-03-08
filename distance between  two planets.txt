@@ -1,0 +1,24 @@
+% Facts about planets
+planet_distance_mass(mercury, 0.39, 0.0553).
+planet_orbital_day(saturn, 29.46, 10.7).
+
+% Rule to find the distance between two planets based on their positions from the Sun
+distance_between_planets(Planet1, Planet2, Distance) :-
+    planet_distance_from_sun(Planet1, Dist1),
+    planet_distance_from_sun(Planet2, Dist2),
+    Distance is abs(Dist1 - Dist2).
+
+% Facts about planet distances from the Sun (assuming Earth is 1 AU from the Sun)
+planet_distance_from_sun(mercury, 0.39).
+planet_distance_from_sun(venus, 0.72).
+planet_distance_from_sun(earth, 1.0).
+planet_distance_from_sun(mars, 1.52).
+planet_distance_from_sun(jupiter, 5.20).
+planet_distance_from_sun(saturn, 9.58).
+planet_distance_from_sun(uranus, 19.22).
+planet_distance_from_sun(neptune, 30.05).
+
+% Query to find all planets closer to the Sun than Earth
+closer_to_sun_than_earth(Planet) :-
+    planet_distance_from_sun(Planet, Distance),
+    Distance < 1.0.

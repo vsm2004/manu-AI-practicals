@@ -1,0 +1,10 @@
+% Facts about dietary recommendations
+diet_recommendation(diabetes, 'Consume low glycemic index foods such as whole grains, vegetables, and lean proteins. Limit consumption of sugary foods and refined carbohydrates. Monitor carbohydrate intake and consider portion control.').
+diet_recommendation(hypertension, 'Follow the DASH diet, which emphasizes fruits, vegetables, whole grains, and lean proteins while limiting sodium, saturated fats, and processed foods. Reduce salt intake and avoid high-sodium foods.').
+diet_recommendation(obesity, 'Focus on a balanced diet with portion control and calorie restriction. Increase consumption of fruits, vegetables, and lean proteins. Limit intake of high-calorie and processed foods. Incorporate regular physical activity into your routine.').
+
+% Query to suggest diet for a specific health condition
+suggest_diet(Condition) :-
+    diet_recommendation(Condition, Diet),
+    write('For '), write(Condition), write(':'), nl,
+    write(Diet), nl.

@@ -1,0 +1,45 @@
+% Define individuals with their names and dates of birth
+dob(john, date(1990, 5, 15)).
+dob(mary, date(1985, 10, 20)).
+dob(peter, date(1995, 3, 8)).
+dob(sarah, date(1980, 7, 3)).
+dob(jane, date(1992, 12, 25)).
+
+% Rule to calculate age based on date of birth
+age(Name, Age) :-
+    dob(Name, date(Year, Month, Day)),
+    get_date(CurrentYear, CurrentMonth, CurrentDay),
+    Age is CurrentYear - Year - ((CurrentMonth, CurrentDay) @< (Month, Day)).
+
+% Get the current date (you may need to implement this depending on your Prolog environment)
+get_date(2024, 3, 8).
+
+% Query to retrieve the DOB of a specific person given their name
+% Example: dob(john, DOB).
+% Result: DOB = date(1990, 5, 15)
+ 
+% Query to find all individuals who are older than a certain age
+% Example: older_than(30, Name).
+% Result: Name = mary, Name = sarah
+
+older_than(Age, Name) :-
+    dob(Name, DOB),
+    age(Name, AgeOfPerson),
+    AgeOfPerson > Age.
+
+% Query to determine who is the youngest person in the database
+% Example: youngest(Name).
+% Result: Name = peter
+
+youngest(Name) :-
+    dob(Name, _),
+    \+ (dob(_, DOB), dob(Name, OtherDOB), DOB @> OtherDOB).
+
+% Query to check if a specific person is older than another specific person
+% Example: is_older(john, sarah).
+% Result: true
+
+is_older(Person1, Person2) :-
+    age(Person1, Age1),
+    age(Person2, Age2),
+    Age1 > Age2.

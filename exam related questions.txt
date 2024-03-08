@@ -1,0 +1,49 @@
+% Knowledge base with facts
+student(john).
+student(mary).
+student(peter).
+
+teacher(mr_smith).
+teacher(ms_jones).
+teacher(mr_doe).
+
+subject(math).
+subject(science).
+subject(english).
+
+code(101).
+code(102).
+code(103).
+
+% Predicate to generate fill-in-the-blank questions
+generate_question(Question) :-
+    % Generate a random number between 1 and 3 to select a question type
+    random(1, 4, Choice),
+    % Generate questions based on the selected type
+    (Choice =:= 1 ->
+        % Question type 1: Who is the teacher of [subject]?
+        subject(Subject),
+        teacher(Teacher),
+        atomic_list_concat(['Who is the teacher of ', Subject, '?'], '', Question);
+    Choice =:= 2 ->
+        % Question type 2: What is the subject with code [code]?
+        code(Code),
+        subject(Subject),
+        atomic_list_concat(['What is the subject with code ', Code, '?'], '', Question);
+    Choice =:= 3 ->
+        % Question type 3: Who is a student?
+        student(Student),
+        atomic_list_concat(['Who is a student?'], '', Question)
+    ).
+
+% Generate and print a set of exam questions
+generate_exam_questions(N) :-
+    generate_exam_questions(N, 1).
+
+generate_exam_questions(0, _) :- !.
+generate_exam_questions(N, Count) :-
+    generate_question(Question),
+    format('Question ~w: ~w~n', [Count, Question]),
+    NextCount is Count + 1,
+    NextN is N - 1,
+    generate_exam_questions(NextN, NextCount).
