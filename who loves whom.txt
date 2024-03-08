@@ -1,0 +1,8 @@
+loves(john, mary).
+loves(jane, peter).
+loves(peter, alice).
+loves(john, alice).
+
+loves_alice(X) :- loves(X, alice).
+
+?- loves_alice(X).
